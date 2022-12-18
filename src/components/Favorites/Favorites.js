@@ -1,27 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { saveList, deleteNameFromList } from '../../Redux/movieSlice';
+
 import './Favorites.css';
 
 
-class Favorites extends Component {
-    state = {
-        title: 'Новый список',
-        movies: [
-            { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-        ]
-    }
-    render() { 
-        return (
-            <div className="favorites">
-                <input value="Новый список" className="favorites__name" />
-                <ul className="favorites__list">
-                    {this.state.movies.map((item) => {
-                        return <li key={item.id}>{item.title} ({item.year})</li>;
-                    })}
-                </ul>
-                <button type="button" className="favorites__save">Сохранить список</button>
-            </div>
-        );
-    }
-}
+function Favorites() {
+
+    const dispatch = useDispatch()
+    const isActive = useSelector(state => state.movies.isActive)
+    const saveName = useSelector(state => state.movies.listOfName
+        .filter((item, index) => state.movies.listOfName.indexOf(item) === index))
  
+    return (
+        <div className="favorites">
+            <ul className="favorites__list">
+                {
+                    saveName.map((element, index) => (
+                        <li className='favorites__list_li' key={index}>{element} <i onClick={() => dispatch(deleteNameFromList({ index }))} className="fa-solid fa-circle-xmark"></i></li>
+                    ))
+                }
+            </ul>
+            <button  type="button" onClick={() => dispatch(saveList(saveName))} className={isActive ? 'favorites__save' : 'un-favorites'}>Save list</button>
+        </div>
+    );
+}
+
 export default Favorites;
+ 
