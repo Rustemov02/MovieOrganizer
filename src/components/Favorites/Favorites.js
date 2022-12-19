@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveList, deleteNameFromList } from '../../Redux/movieSlice';
-
+import { NavLink } from 'react-router-dom';
 import './Favorites.css';
 
 
@@ -11,7 +11,7 @@ function Favorites() {
     const isActive = useSelector(state => state.movies.isActive)
     const saveName = useSelector(state => state.movies.listOfName
         .filter((item, index) => state.movies.listOfName.indexOf(item) === index))
- 
+
     return (
         <div className="favorites">
             <ul className="favorites__list">
@@ -21,10 +21,12 @@ function Favorites() {
                     ))
                 }
             </ul>
-            <button  type="button" onClick={() => dispatch(saveList(saveName))} className={isActive ? 'favorites__save' : 'un-favorites'}>Save list</button>
+            <button disabled={true} type="button" onClick={() => {
+                console.log('clicked !')
+                dispatch(saveList(saveName))
+                }} className={isActive ? 'favorites__save' : 'un-favorites'}><NavLink className='navLink__style' to='/list'>Save List</NavLink></button>
         </div>
     );
 }
 
 export default Favorites;
- 

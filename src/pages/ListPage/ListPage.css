@@ -1,12 +1,25 @@
 .list-page {
     padding: 42px calc(50% - 300px); 
 }
-
 .list-page__title {
     font-size: 34px;
     margin-bottom: 26px;
 }
-
 .list-page ul li {
     font-size: 18px;
+}
+.list__button {
+    border: none;
+    background-color: #496DDB;
+    padding: 10px 15px;
+    color: #FFEEDB;
+    font-size: 14px;
+    transition: all 0.2s linear;
+    list-style: none;
+    margin-top: 20px;
+}
+.navLink{
+    width: fit-content;
+    color: white;
+    text-decoration: none;
 }

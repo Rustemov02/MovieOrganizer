@@ -14,9 +14,9 @@ export const movieSlice = createSlice({
     initialState: {
         data: [],
         status: null,
+        isActive : false  ,  
         nameOfMovies: [],
-        listOfName: [],
-        isActive : false    
+        listOfName: []
     },
     reducers: {
         addNameToList: (state, { payload }) => {
@@ -30,7 +30,6 @@ export const movieSlice = createSlice({
         },
         saveList: (state, { payload }) => {
             const filterPay = payload.filter((item, index) => payload.indexOf(item) === index)
-            state.saveNameOfList = filterPay
         },
         deleteNameFromList: (state, { payload }) => {
             state.listOfName = state.listOfName.filter((_, index) => index != (payload.index))

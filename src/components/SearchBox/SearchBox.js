@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import {  useDispatch } from 'react-redux';
-import { fetchMovies  } from '../../Redux/movieSlice';
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../../Redux/movieSlice';
 
 import './SearchBox.css';
 
@@ -9,7 +9,7 @@ function SearchBox() {
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
     const handleChange = (e) => {
-        setValue(e.target.value) 
+        setValue(e.target.value)
     }
 
     return (
@@ -24,13 +24,13 @@ function SearchBox() {
                 />
             </label>
             <button
-            onClick={()=> {dispatch(fetchMovies(value))}}
+                onClick={() => { dispatch(fetchMovies(value)) }}
                 type="submit"
                 className="search-box__form-submit"
             >
                 Search
             </button>
- 
+
 
         </div>
     );
