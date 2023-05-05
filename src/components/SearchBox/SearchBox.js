@@ -8,12 +8,22 @@ import './SearchBox.css';
 function SearchBox() {
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
+
     const handleChange = (e) => {
         setValue(e.target.value)
     }
 
+    const getMovies = () => {
+        if (value.trim() === '') {
+            console.log('empty')
+        } else {
+            dispatch(fetchMovies(value))
+        }
+        setValue('')
+    }
+
     return (
-        <div className="search-box">
+        <div className="search-box" >
             <label className="search-box__form-label">
                 Search movie by title :
                 <input
@@ -24,7 +34,7 @@ function SearchBox() {
                 />
             </label>
             <button
-                onClick={() => { dispatch(fetchMovies(value)) }}
+                onClick={getMovies}
                 type="submit"
                 className="search-box__form-submit"
             >

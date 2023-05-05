@@ -2,9 +2,12 @@
     margin-bottom: 21px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap : 3;
     align-items: flex-start; 
     background-color: #FFEEDB;
     padding: 12px 10px;
+    min-width: 200px;
 }
 .movie-item {
     padding: 20px;

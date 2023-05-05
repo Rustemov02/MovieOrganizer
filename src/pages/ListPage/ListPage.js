@@ -11,13 +11,12 @@ import './ListPage.css';
     return (
         <div className="list-page">
             <h1 className="list-page__title">My list</h1>
-            <ul>
+            <ul className='saveList'>
                 {saveList.map( (item,index) => ( 
-                    <li key={index}> {item}</li>
+                    <li key={index} className='saveList_li'> {item}</li>
                 ))}
             </ul>
-                
-                <button className='list__button'> <NavLink to='/' className='navLink'> Main page</NavLink></button>
+            <button style={{background : "transparent",border : "none"}} type="button"><NavLink className='navLink__style' to='/'>Main Page</NavLink></button>
         </div>
     ); 
 }

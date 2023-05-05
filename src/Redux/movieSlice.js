@@ -5,7 +5,9 @@ export const fetchMovies = createAsyncThunk(
     'movies/fetchMovies',
     async (name) => {
         const response = await axios.get(`https://www.omdbapi.com/?s=${name}&apikey=f979afc`)
+
         return response.data
+
     }
 )
 
@@ -13,31 +15,19 @@ export const movieSlice = createSlice({
     name: 'movies',
     initialState: {
         data: [],
-        status: null,
-        isActive : false  ,  
-        nameOfMovies: [],
+        status: null,    
         listOfName: []
     },
     reducers: {
-        addNameToList: (state, { payload }) => {
-            state.isActive = true
-            state.nameOfMovies += payload + '-'
-            const newArr = state.nameOfMovies.split('-')
-            newArr.pop()
-            console.log('new Arr') 
-            state.listOfName = newArr.filter((item, index) => newArr.indexOf(item) === index)
-            console.log(state.listOfName)
-        },
-        saveList: (state, { payload }) => {
-            const filterPay = payload.filter((item, index) => payload.indexOf(item) === index)
-        },
-        deleteNameFromList: (state, { payload }) => {
-            state.listOfName = state.listOfName.filter((_, index) => index != (payload.index))
-            if(state.listOfName.length == 0){
-                state.isActive = false
+        addNameToList: (state, { payload }) => { 
+            if (!state.listOfName.includes(payload)) {
+                const newList = [...state.listOfName, payload]
+                state.listOfName = newList   
             }
-            console.log('listOfName')
-            console.log(state.listOfName)
+        },  
+        deleteNameFromList: (state, { payload }) => { 
+            state.listOfName = state.listOfName.filter(item => item !== payload)
+ 
         }
     },
     extraReducers: {
@@ -57,5 +47,5 @@ export const movieSlice = createSlice({
     }
 })
 
-export const { saveList, addNameToList, deleteNameFromList } = movieSlice.actions
+export const {addNameToList, deleteNameFromList } = movieSlice.actions
 export default movieSlice.reducer
